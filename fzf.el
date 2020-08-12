@@ -100,11 +100,13 @@
          (line (car lines))
          (selected (split-string (or line "") ":" t))
          (file (pop selected))
+         (file-abs (and file
+                        (expand-file-name file)))
          (linenumber (pop selected)))
     (kill-buffer "*fzf*")
     (jump-to-register :fzf-windows)
-    (when (and file
-               (file-exists-p file))
+    (when (and file-abs
+               (file-exists-p file-abs))
       (find-file file))
     (when linenumber
       (goto-char (point-min))
