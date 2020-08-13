@@ -134,7 +134,7 @@
     (setq fzf--tmp-output-file
           output-file)
     (with-current-buffer buf
-      (setq default-directory directory))
+      (cd directory))
     (split-window-vertically window-height)
     (when fzf/position-bottom (other-window 1))
     (make-term "fzf" "sh" nil "-c" sh-cmd-with-redirect)
